@@ -100,7 +100,7 @@ function diez(){
         arraybueno.push(array[i]);
         }
     }
-    for (let i =0;i < arraybueno.length;i++>) {
+    for (let i =0;i < arraybueno.length;i++) {
         console.log(arraybueno[i]);
     }
 }
