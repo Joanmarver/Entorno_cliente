@@ -28,11 +28,11 @@ function Libro(titulo, autor, anio) {
   }
   //eliminar libros
   function deletebooks(){
-      /*let contenedor = document.getElementById("lista");
+      let contenedor = document.getElementById("lista");
       contenedor.innerHTML = "";
       for (let i = 0; i < biblioteca.length; i++) {
-          biblioteca.delete(contenedor[i]);
-      }*/
+          biblioteca.length = 0;
+      }
   }
   //contar libros
   function countbooks(){
@@ -48,18 +48,48 @@ function Libro(titulo, autor, anio) {
       contenedor.appendChild(p);
       console.log(cont);
   }
-  function readAndNotRead(){
-      let read = [];
+  function notRead(){
+
       let notread =[];
+      let contenido = document.getElementById("lista");
+      contenido.innerHTML = "";
+      let ol=document.createElement("ol");
       for (let i = 0; i < biblioteca.length;i++){
-          if(biblioteca[i].leido === false){
+          if(biblioteca[i].leido === false) {
               notread.push(biblioteca[i]);
-          }else{
-              read.push(biblioteca[i]);
           }
       }
+      for(let i=0;i<notread.length;i++){
+          let li= document.createElement("li");
+          li.textContent = `${biblioteca[i].titulo} (${biblioteca[i].anio}) \n`
+          ol.appendChild(li);
+      }
+      contenido.appendChild(ol);
+
 
   }
+
+function read(){
+
+    let read =[];
+    let contenido = document.getElementById("lista");
+    contenido.innerHTML = "";
+    let ol=document.createElement("ol");
+    for (let i = 0; i < biblioteca.length;i++){
+        if(biblioteca[i].leido === true) {
+            read.push(biblioteca[i]);
+        }
+    }
+    for(let i=0;i<read.length;i++){
+        let li= document.createElement("li");
+        li.textContent = `${biblioteca[i].titulo} (${biblioteca[i].anio}) \n`
+        ol.appendChild(li);
+    }
+    contenido.appendChild(ol);
+
+
+}
+
   function yearBook(){
       biblioteca.sort((a,b) => b.anio - a.anio);
       let contenido;
@@ -109,13 +139,14 @@ function Libro(titulo, autor, anio) {
     document.getElementById("btnLibrosordenadosanio").addEventListener("click", () => {
     yearBook();
     });
-    document.getElementById("btnLibroseliminar").addEventListener("click", () => {
-    deletebooks();
-    })
-  
-  document.getElementById("btnMostrar").addEventListener("click", listarLibros);
-  
+
+
+    document.getElementById("btnMostrar").addEventListener("click", listarLibros);
   document.getElementById("btnLeido").addEventListener("click", () => {
     let titulo = document.getElementById("tituloLeido").value;
     marcarComoLeido(titulo);
   });
+  document.getElementById("btnCantidadLibros").addEventListener("click", countbooks);
+  document.getElementById("btnLibrosNoLeidos").addEventListener("click", notRead);
+  document.getElementById("btnLibrosLeidos").addEventListener("click", read);
+  document.getElementById("btnLibroseliminar").addEventListener("click", deletebooks);

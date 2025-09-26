@@ -1,0 +1,97 @@
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+h2 {
+    border-left: 5px solid #3498db;
+    padding-left: 10px;
+    color: #34495e;
+    margin-top: 30px;
+}
+
+
+form {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccd1d9;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 4px #3498db66;
+}
+
+button {
+    background: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 6px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
+#btnMostrar {
+    background: #2ecc71;
+}
+
+#btnMostrar:hover {
+    background: #27ae60;
+}
+
+
+#lista {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    min-height: 50px;
+}
+
+
+#tituloLeido {
+    width: 250px;
+    margin-left: 10px;
+}
