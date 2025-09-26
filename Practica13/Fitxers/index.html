@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Biblioteca</title>
+</head>
+<body>
+  <h1>Mi Biblioteca</h1>
+
+  <h2>Agregar libro</h2>
+  <form id="formLibro">
+    <label>Título: <input type="text" id="titulo"></label><br>
+    <label>Autor: <input type="text" id="autor"></label><br>
+    <label>Año: <input type="number" id="anio"></label><br>
+  </form>
+
+  <h2>Acciones</h2>
+  <button id="btnMostrar">Mostrar biblioteca</button><br><br>
+  <button type="button" id="btnAgregar">Agregar libro</button>
+  <button type="button" id="btnLibrosordenadosanio">Libros Ordenados</button>
+  <button type="button" id="btnCantidadLibros">Cantidad de libros</button>
+  <button type="button" id="btnLibrosLeidos">Libros leidos</button>
+  <button type="button" id="btnLibrosNoLeidos">Libros no leidos</button>
+  <button type="button" id="btnLibroseliminar">Eliminar libros</button>
+  <br><br><br>
+  <label>Marcar como leído (por título): 
+    <input type="text" id="tituloLeido">
+  </label>
+  <button id="btnLeido">Marcar leído</button>
+
+  <h2>Listado</h2>
+  <div id="lista"></div>
+
+  <script src="script2.js"></script>
+</body>
+</html>
