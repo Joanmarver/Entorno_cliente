@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Práctica de Eventos JS</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: #333; }
+    button { margin: 5px; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    input { padding: 6px; border-radius: 4px; }
+    #log { margin-top: 20px; border: 1px solid #ccc; padding: 10px; min-height: 80px; background: #f8f8f8; }
+    #scrollBox { margin-top: 10px; border:1px solid #aaa; height: 100px; overflow:auto; padding:5px; background:#fff;}
+  </style>
+</head>
+<body>
+
+  <h1>Práctica de Eventos JavaScript</h1>
+
+  <p>Usa los botones, input y formulario para probar distintos eventos.</p>
+
+  <!-- Botones de ratón -->
+  <button id="btnClick">Click</button>
+  <button id="btnDbl">Doble Click</button>
+  <button id="btnMouse">Hover</button>
+
+  <!-- Input -->
+  <div style="margin-top:10px;">
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+  </div>
+
+  <!-- Formulario -->
+  <form id="miForm" style="margin-top:10px;">
+    <input type="text" id="apellido" placeholder="Apellido">
+    <button type="submit">Enviar</button>
+    <button type="reset">Reset</button>
+  </form>
+
+  <!-- Caja con scroll -->
+  <div id="scrollBox">
+    <p>Esta es un área con scroll. Haz scroll aquí para disparar un evento.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p>Más contenido para hacer scroll.</p>
+  </div>
+
+  <!-- Panel de log -->
+  <div id="log">Eventos aparecerán aquí...</div>
+
+  <script >
+    const $log = $("#log")
+    function appendLog(text){
+        $log.prepend(text + "<br>");
+    }
+
+    // === RATÓN ===
+    const $btnClick = $("#btnClick")
+    const $btnDbl = $("#btnDbl")
+    const $btnMouse = $("#btnMouse")
+
+    // Añadir un evento "click" a btnClick que muestre "Botón clicado"
+    $btnClick.click(function(){
+        appendLog("boton clicado")
+    })
+    // Añadir un evento "dblclick" a btnDbl que muestre "Botón doble clicado"
+   $btnDbl.dblclick(()=> appendLog("Boton doble clicado"));
+    // Añadir eventos "mouseenter" y "mouseleave" a btnMouse que muestren "Entró el mouse" y "Salió el mouse"
+    $btnMouse.mouseenter(()=> appendLog("Entro el raton"));
+    $btnMouse.mouseleave(()=> appendLog("Salió el mouse"));
+    // === TECLADO ===
+   const $nombre = $("#nombre")
+
+    // Añadir evento "input" para mostrar lo que el alumno escribe en el log
+    $nombre.on("input", function(){
+        appendLog("Escribiendo: " + $(this).val());
+    });
+
+    // Añadir evento "keydown" global que muestre la tecla presionada
+    $(document).keydown(function(event){
+        appendLog("tecla presionada: " + event.keyCode);
+    })
+    // === FORMULARIO ===
+    const $miForm = $("#miForm");
+    const $apellido=$("#apellido");
+
+    // Evento "submit" que muestre el valor de apellido y evite enviar
+    $miForm.submit(function(event){
+        event.preventDefault();
+        appendLog("Apellido ingreado: " + $apellido.val);
+    })
+
+    $miForm.on("reset", () => appenLog("Formulario reiniciado"))
+    // Evento "reset" que muestre "Formulario reiniciado"
+    // === VENTANA / SCROLL ===
+    const  $scrollbox = $("#scrollBox");
+
+    // Evento "scroll" que muestre "Scroll en el área"
+    $scrollbox.scroll(() => appendLog("Scrolling iniciado"));
+    // Evento "resize" de la ventana que muestre "Ventana redimensionada"
+    $(window).resize(()=>appendLog("Ventana redimensionada"));
+
+
+  </script>
+
+</body>
+</html>

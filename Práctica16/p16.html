@@ -1,0 +1,111 @@
+!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Práctica setAttribute</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: #333; }
+    button { margin: 5px; padding: 8px 12px; cursor: pointer; }
+    img, a { display: block; margin-top: 10px; }
+    input { padding: 5px; margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+  <h1>Práctica de JavaScript: setAttribute</h1>
+
+  <p>En esta práctica aprenderás a cambiar atributos de elementos usando <code>setAttribute</code>.</p>
+
+  <!-- EJERCICIO 1 -->
+  <p><!-- Cambia el enlace del link usando setAttribute --></p>
+  <a id="link1" href="https://www.ejemplo1.com" target="_blank">Ir a Ejemplo 1</a>
+  <button id="btnLink1">Cambiar enlace</button>
+
+  <script>
+    const btnLink1 = document.getElementById("btnLink1");
+    btnLink1.addEventListener("click", () => {
+      const link = document.getElementById("link1");
+      link.setAttribute("href", "https://www.ejemplo2.com");
+      // TO-DO: Cambia el href a https://www.ejemplo2.com usando setAttribute
+    });
+  </script>
+
+  <!-- EJERCICIO 2 -->
+  <p><!-- Cambia la imagen y su atributo alt usando setAttribute --></p>
+  <img id="img1" src="brocoli.png" alt="Imagen 1" width="200">
+  <button id="btnImg1">Cambiar imagen</button>
+
+  <script>
+    const btnImg1 = document.getElementById("btnImg1");
+    btnImg1.addEventListener("click", () => {
+      const img = document.getElementById("img1");
+      // TO-DO: Cambia el src a calabaza.png y el alt a "Imagen nueva"
+        img.setAttribute("src", "calabaza.png");
+        img.setAttribute("alt", "Imagen nueva");
+    });
+  </script>
+
+<!-- EJERCICIO 3 -->
+<p><!-- Al hacer clic, cambia el color y muestra un mensaje en el div --></p>
+<div id="div1" style="width:150px;height:50px;background:#ccc;display:flex;align-items:center;justify-content:center;">
+</div>
+<button id="btnDiv1">Activar acción</button>
+
+<script>
+  const btnDiv1 = document.getElementById("btnDiv1");
+  btnDiv1.addEventListener("click", () => {
+    const div = document.getElementById("div1");
+      const p = document.createElement("p");
+      p.textContent = "el estilo se ha cambiado";
+      div.appendChild(p);
+    //TO-DO: Cambia el color de fondo, el color de la fuente y un mensaje en el div
+      div.setAttribute("style", "width:150px;height:50px;background:blue;display:flex;align-items:center;justify-content:center;color:red");
+
+
+  });
+</script>
+
+
+  <!-- EJERCICIO 4 -->
+  <p><!-- Cambia el tipo de un input usando setAttribute --></p>
+  <input type="text" id="input1" placeholder="Escribe aquí">
+  <button id="btnInput1">Cambiar a password</button>
+
+  <script>
+    const btnInput1 = document.getElementById("btnInput1");
+    btnInput1.addEventListener("click", () => {
+      const input = document.getElementById("input1");
+      // TO-DO: Cambia el atributo type a "password"
+        input.setAttribute("type", "password");
+    });
+  </script>
+
+  <!-- EJERCICIO 5 -->
+  <p><!-- Cambia el target de un enlace para que abra en la misma ventana --></p>
+  <a id="link2" href="https://www.ejemplo.com" target="_blank">Ir a Ejemplo</a>
+  <button id="btnLink2">Abrir en misma ventana</button>
+
+  <script>
+    const btnLink2 = document.getElementById("btnLink2");
+    btnLink2.addEventListener("click", () => {
+      const link = document.getElementById("link2");
+      // TO-DO: Cambia el target a "_self"
+        link.setAttribute("target", "_self");
+    });
+  </script>
+
+  <!-- EJERCICIO 6 -->
+  <p><!-- Añade un título (title) a un botón usando setAttribute --></p>
+  <button id="btn6">Botón sin title</button>
+
+  <script>
+    const btn6 = document.getElementById("btn6");
+    btn6.addEventListener("click", () => {
+      // TO-DO: Añade un atributo title con valor "Este es un botón"
+        btn6.setAttribute("title", "este es un boton");
+    });
+  </script>
+
+</body>
+</html>

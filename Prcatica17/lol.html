@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica de Eventos JS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        button { margin: 5px; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+        input { padding: 6px; border-radius: 4px; }
+        #log { margin-top: 20px; border: 1px solid #ccc; padding: 10px; min-height: 80px; background: #f8f8f8; }
+        #scrollBox { margin-top: 10px; border:1px solid #aaa; height: 100px; overflow:auto; padding:5px; background:#fff;}
+    </style>
+</head>
+<body>
+
+<h1>Práctica de Eventos JavaScript</h1>
+
+<p>Usa los botones, input y formulario para probar distintos eventos.</p>
+
+<!-- Botones de ratón -->
+<button id="btnClick">Click</button>
+<button id="btnDbl">Doble Click</button>
+<button id="btnMouse">Hover</button>
+
+<!-- Input -->
+<div style="margin-top:10px;">
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+</div>
+
+<!-- Formulario -->
+<form id="miForm" style="margin-top:10px;">
+    <input type="text" id="apellido" placeholder="Apellido">
+    <button type="submit">Enviar</button>
+    <button type="reset">Reset</button>
+</form>
+
+<!-- Caja con scroll -->
+<div id="scrollBox">
+    <p>Esta es un área con scroll. Haz scroll aquí para disparar un evento.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p>Más contenido para hacer scroll.</p>
+</div>
+
+<!-- Panel de log -->
+<div id="log">Eventos aparecerán aquí...</div>
+
+<!-- Cargar jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Tu código JS -->
+<script>
+    const $log = $("#log");
+
+    function appendLog(text){
+        $log.append(text + "<br>");
+    }
+
+    // === RATÓN ===
+    const $btnClick = $("#btnClick");
+    const $btnDbl = $("#btnDbl");
+    const $btnMouse = $("#btnMouse");
+
+    $btnClick.click(function(){
+        appendLog("Botón clicado");
+    });
+
+    $btnDbl.dblclick(() => appendLog("Botón doble clicado"));
+
+    $btnMouse.mouseenter(() => appendLog("Entró el ratón"));
+    $btnMouse.mouseleave(() => appendLog("Salió el ratón"));
+
+    // === TECLADO ===
+    const $nombre = $("#nombre");
+
+    $nombre.on("input", function(){
+        appendLog("Escribiendo: " + $(this).val());
+    });
+
+    $(document).keydown(function(event){
+        appendLog("Tecla presionada: " + event.key);
+    });
+
+    // === FORMULARIO ===
+    const $miForm = $("#miForm");
+    const $apellido = $("#apellido");
+
+    $miForm.submit(function(event){
+        event.preventDefault();
+        appendLog("Apellido ingresado: " + $apellido.val());
+    });
+
+    $miForm.on("reset", () => appendLog("Formulario reiniciado"));
+
+    // === VENTANA / SCROLL ===
+    const $scrollbox = $("#scrollBox");
+
+    $scrollbox.scroll(() => appendLog("Scroll en el área"));
+
+    $(window).resize(() => appendLog("Ventana redimensionada"));
+</script>
+
+</body>
+</html>
