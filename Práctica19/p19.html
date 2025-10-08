@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Práctica jQuery CSS - Huecos para completar</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+  p { margin: 10px 0; }
+</style>
+</head>
+<body>
+
+<h2>Ejercicio 1 — Cambiar color de un párrafo</h2>
+<p id="p1">Este párrafo cambiará de color.</p>
+<button id="btn1">Cambiar color a rojo</button>
+
+<h2>Ejercicio 2 — Cambiar varias propiedades</h2>
+<p id="p2">Este párrafo cambiará color y fondo.</p>
+<button id="btn2">Cambiar color y fondo</button>
+
+<h2>Ejercicio 3 — Obtener valor de una propiedad</h2>
+<p id="p3" style="background-color: lightgreen;">Este párrafo tiene fondo verde.</p>
+<button id="btn3">Ver fondo en consola</button>
+
+<h2>Ejercicio 4 — Usar función callback (modificar solo un párrafo)</h2>
+<p>Parrafo 1</p>
+<p>Parrafo 2</p>
+<p>Parrafo 3</p>
+<button id="btn4">Aumentar tamaño solo del segundo</button>
+
+<h2>Ejercicio 5 — Alternar estilos</h2>
+<p id="p5">Haz clic varias veces para cambiar color.</p>
+<button id="btn5">Alternar color</button>
+
+<script>
+/* 
+Ejercicio 1
+- Cambiar el color del párrafo #p1 a rojo usando jQuery
+- Usa el método .css() con la propiedad "color"
+*/
+$("#btn1").click(function(){
+  $("#p1").css("color", "red");
+});
+
+/* 
+Ejercicio 2
+- Cambiar el color del párrafo #p2 a azul y el fondo a amarillo
+- Usa .css() pasando un objeto con varias propiedades
+*/
+$("#btn2").click(function(){
+  $("#p2").css({
+    "color": "blue",
+    "background-color": "yellow"
+  });
+});
+
+/* 
+Ejercicio 3
+- Obtener el color de fondo del párrafo #p3
+- Muestra el valor en la consola con console.log()
+- Usa .css("background-color") para obtener el valor
+*/
+$("#btn3").click(function(){
+  let bg = $("#p3").css("background-color");
+  console.log("Color de fondo del párrafo:", bg);
+});
+
+/* 
+Ejercicio 4
+- Aumentar el tamaño de fuente solo del segundo párrafo
+- Usa la función callback de .css() que recibe (i, oldSize)
+- Multiplica oldSize por 1.2 y añade "px"
+- No cambies los demás párrafos
+*/
+$("#btn4").click(function(){
+  $("p").css("font-size", function(i, oldSize){
+    if(i === 4){
+      return parseFloat(oldSize) * 1.2+ "px";
+    } else {
+      return oldSize;
+    }
+  });
+});
+
+/* 
+Ejercicio 5
+- Alternar el color del párrafo #p5 entre rojo y azul cada vez que se pulse el botón
+- Obtén el color actual con .css("color")
+- Cambia el color según sea rojo o no
+*/
+$("#btn5").click(function(){
+  var currentColor = $("#p5").css("color");
+  if(currentColor === 'rgb(255, 0, 0)'){ // rojo
+    $("#p5").css("color", "blue");
+  } else {
+    $("#p5").css("color", "red");
+  }
+});
+</script>
+
+</body>
+</html>
