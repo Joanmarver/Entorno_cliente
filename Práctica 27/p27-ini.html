@@ -47,12 +47,15 @@
 <p id="elecciones"></p>
 <p id="resultado"></p>
 <p id="puntos"></p>
+<p id="log"></p>
 
 <script>
     $(document).ready(function() {
         let puntosplayr=0;
         let puntospc=0;
         const opciones=["piedra","papel","tijera"];
+
+
         function  jugar(eleccion){
 
            let mensaje =" ";
@@ -77,6 +80,14 @@
            $("#resultado").text(mensaje).css({"color": color});
             const puntuacion=$("#puntos");
             puntuacion.html(`el jugador tiene <b>${puntosplayr}</b> puntos | el pc tiene ${puntospc} puntos`)
+
+            agregarLog(`jugador: ${puntosplayr} | pc: ${puntospc}`);
+
+            function agregarLog(texto){
+                const fecha = new Date().toLocaleTimeString();
+                $("#log").prepend(`<div>${fecha}: ${texto}</div>`);
+            }
+
         }
 
     const $piedra = $('#piedra').click(function(){
