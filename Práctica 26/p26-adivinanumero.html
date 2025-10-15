@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Adivina el número</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 40px; }
+        input, button { font-size: 18px; margin: 5px; }
+    </style>
+</head>
+<body>
+<h1>Adivina el número (1 al 10)</h1>
+<p>Introduce un número y pulsa comprobar.</p>
+<input type="number" id="numero" min="1" max="10">
+<button id="comprobar">Comprobar</button>
+<p id="resultado"></p>
+
+<script>
+    const secreto = Math.floor(Math.random() * 10) + 1;
+    document.getElementById("comprobar").addEventListener('click', () => {
+        const number = parseInt(document.getElementById("numero").value);
+        const resultado = document.getElementById("resultado");
+
+        if (number === secreto){
+            resultado.textContent = "correcto"
+            resultado.style.color = "green"
+        }else if(number > secreto){
+            resultado.textContent = "el numero es mayor"
+            resultado.style.color = "orange"
+        }else {
+            resultado.textContent = "el numero es menor"
+            resultado.style.color = "red"
+        }
+    })
+    //TO DO
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Piedra, Papel o Tijera (con id)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+            background-color: #f8f8f8;
+        }
+        h1 { color: #333; }
+        button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+        }
+        button:hover { background-color: #2980b9; }
+        #resultado {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #elecciones {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Piedra, Papel o Tijera</h1>
+<p>Elige una opción:</p>
+
+<button id="piedra">🪨 Piedra</button>
+<button id="papel">📄 Papel</button>
+<button id="tijera">✂️ Tijera</button>
+
+<p id="elecciones"></p>
+<p id="resultado"></p>
+<p id="puntos"></p>
+
+<script>
+    $(document).ready(function() {
+        let puntosplayr=0;
+        let puntospc=0;
+        const opciones=["piedra","papel","tijera"];
+        function  jugar(eleccion){
+
+           let mensaje =" ";
+           let color=" ";
+           const elecciones= $("#elecciones");
+           const pc= opciones[Math.floor(Math.random()*opciones.length)];
+            elecciones.html(`el jugador eligió <b>${eleccion}</b> | Ordenador elige <b>${pc}</b>`);
+           if(eleccion == pc){
+               mensaje = "empate";
+               color = "orange";
+           }else if((eleccion ==="piedra" && pc==="tijera") ||
+               (eleccion==="papel" && pc==="piedra" )||
+               (eleccion==="tijera" && pc==="papel")){
+               puntosplayr++;
+               mensaje = "ganaste";
+               color = "green";
+           }else{
+               mensaje = "perdiste";
+               color = "red";
+               puntospc++;
+           }
+           $("#resultado").text(mensaje).css({"color": color});
+            const puntuacion=$("#puntos");
+            puntuacion.html(`el jugador tiene <b>${puntosplayr}</b> puntos | el pc tiene ${puntospc} puntos`)
+        }
+
+    const $piedra = $('#piedra').click(function(){
+       jugar("piedra");
+    })
+    const $papel = $('#papel').click(function(){
+        jugar("papel");
+    });
+    const $tijera = $('#tijera').click(function(){
+        jugar("tijera");
+    })
+
+
+    });
+</script>
+
+</body>
+</html>

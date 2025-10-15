@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Adivina el número</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 40px; }
+        input, button { font-size: 18px; margin: 5px; }
+    </style>
+</head>
+<body>
+<h1>Adivina el número (1 al 10)</h1>
+<p>Introduce un número y pulsa comprobar.</p>
+<input type="number" id="numero" min="1" max="10">
+<button id="comprobar">Comprobar</button>
+<p id="resultado"></p>
+
+<script>
+    $(document).ready(function(){
+        const secreto = Math.floor(Math.random() * 10) + 1;
+        $("#comprobar").click(function(){
+            const number = parseInt($("#numero").val());
+            const resultado = $("#resultado");
+            if (number === secreto) {
+                resultado.text("correcto").css("color", "green");
+            } else if (number > secreto) {
+                resultado.text("el numero es mayor").css("color", "orange");
+            } else {
+                resultado.text("el numero es menor").css("color", "red");
+            }
+        })
+    })
+
+    //TO DO
+
+</script>
+</body>
+</html>
