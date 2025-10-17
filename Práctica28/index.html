@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1 id="titulo">Bienvenido a jQuery</h1>
+<p class="texto" >Este es un párrafo de ejemplo.</p>
+<p class="texto">Otro párrafo más.</p>
+
+<button id="botonCambiar">Cambiar texto</button>
+<button id="botonColor">Cambiar color</button>
+<button id="botonOcultar">Ocultar título</button>
+<button id="botonCrearParrafo">Crear Parrafo</button>
+
+<script>
+    /*MOstrar el texto de los elementos parrafos por pantalla*/
+    $('p').each(function () {
+        console.log($(this).text());
+    })
+    /* Cambiar titulo*/
+    $("#titulo").text('Titulo cambiado')
+    /*añadir estilo a elementos con clase  texto*/
+    $('.texto').css('color', 'red')
+
+    /* añadir texto debajo del body*/
+    $('body').append('<p>Texto nuevo</p>')
+    /* añadir  texto arriba del body */
+    $('body').prepend('<p>Texto nuevo</p>')
+    /*Añadir un atributo clase a titulo*/
+    $('#titulo').addClass('resaltado')
+    /*añadir estilos al elemento que tenga la  clase resaltado*/
+   $('.resaltado').css({"color": "red", "font-weight": "bold;"});
+    /*evento de al clicar un boton , se cambia titulo*/
+   $('#botonCambiar').click(function () {
+       $('#titulo').text('Titulo cambiado por boton')
+   })
+    /*evento de al clicar un boton , se cambia el color de fondo*/
+    $('#botonColor').click(function () {
+        $('p').css("background-color", "yellow");
+    })
+    /*evento  de al clivar un boton, se  se oculta o se muestra*/
+    /*toggle: o se oculta o se muestra
+    * show: se muestra
+    * hide: se oculta*/
+    $('#botonOcultar').click(function () {
+        $('#titulo').toggle();
+    })
+    /*al pasar por el cursosr se cambia el fondo solo por el primer parrafo*/
+    $('.texto').eq(0).hover(function () {
+        $(this).css("background-color", "salmon");
+    }, function () {
+        $(this).css("background-color", "");
+    })
+    /*crear un parrafo al crear el boton*/
+    $('#botonCrearParrafo').click(function () {
+        $('body').append('<p>Parrafo creado al pulsar el boton</p>')
+    })
+
+    // Aquí irán tus scripts jQuery
+</script>
+</body>
+</html>

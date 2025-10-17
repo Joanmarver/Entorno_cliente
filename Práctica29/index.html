@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Piedra, Papel o Tijera (con puntuación)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+            background-color: #f8f8f8;
+        }
+        h1 { color: #333; }
+        button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+        }
+        button:hover { background-color: #2980b9; }
+        #resultado {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #elecciones, #puntuacion, #log {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+        #log {
+            margin-top: 20px;
+            background: #eee;
+            padding: 10px;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Piedra, Papel o Tijera</h1>
+<p>Elige una opción:</p>
+
+<button id="piedra" class="boton">🪨 Piedra</button>
+<button id="papel" class="boton">📄 Papel</button>
+<button id="tijera" class="boton">✂️ Tijera</button>
+<button id="reiniciar" class="boton" style="background:#e74c3c;">🔄 Reiniciar</button>
+<button id="fondo" class="boton"> Cambiar fondo</button>
+<p id="puntuacion">👤 Jugador: 0 | 💻 PC: 0</p>
+<p id="elecciones"></p>
+<p id="resultado"></p>
+<div id="log"></div>
+
+<script>
+    $(document).ready(function() {
+        const opciones = ["piedra", "papel", "tijera"];
+        let puntosJugador = 0;
+        let puntosPC = 0;
+
+        function actualizarPuntuacion() {
+            $("#puntuacion").text(`👤 Jugador: ${puntosJugador} | 💻 PC: ${puntosPC}`);
+        }
+
+        function agregarLog(texto) {
+            const fecha = new Date().toLocaleTimeString();
+            $("#log").prepend(`<div>🕒 [${fecha}] ${texto}</div>`);
+        }
+
+        function jugar(eleccionJugador) {
+            const pc = opciones[Math.floor(Math.random() * 3)];
+            $("#elecciones").html(`Tú eliges: <b>${eleccionJugador}</b> | Ordenador elige: <b>${pc}</b>`);
+
+            let mensaje = "";
+            let color = "";
+            let colorFondo="";
+
+            if (eleccionJugador === pc) {
+                mensaje = "¡Empate!";
+                color = "orange";
+            } else if (
+                (eleccionJugador === "piedra" && pc === "tijera") ||
+                (eleccionJugador === "papel" && pc === "piedra") ||
+                (eleccionJugador === "tijera" && pc === "papel")
+            ) {
+                colorFondo = "#"+ Math.floor(Math.random() * 16777215).toString(16);
+                $('body').css("background-color", colorFondo);
+                mensaje = "¡Ganaste!";
+                color = "green";
+                puntosJugador++;
+            } else {
+                mensaje = "Perdiste";
+                color = "red";
+                puntosPC++;
+            }
+
+            $("#resultado").text(mensaje).css("color", color);
+            actualizarPuntuacion();
+            agregarLog(`Jugador: ${eleccionJugador} | PC: ${pc} → ${mensaje}`);
+        }
+
+        // Eventos
+        $("#piedra").click(() => jugar("piedra"));
+        $("#papel").click(() => jugar("papel"));
+        $("#tijera").click(() => jugar("tijera"));
+
+        $("#reiniciar").click(() => {
+            puntosJugador = 0;
+            puntosPC = 0;
+            $("#resultado, #elecciones, #log").empty();
+            actualizarPuntuacion();
+            agregarLog("🔄 Partida reiniciada.");
+        });
+    });
+
+   /* */
+    $('#fondo').on('click', function () {
+        /*cambiar el fondo al body*/
+        $('body').css("background-color", "blue");
+       /*cambiar el fondo al boton*/
+
+    })
+    /*funcion que al pulsar cualquierboton , se cambie el fondo de el mismo
+    * y despues de 300ms que quite ese fondo*/
+    $('.boton').on('click', function () {
+        $boton=$(this);
+        $boton.css("background-color", "red");
+        /*el boton cambie al color original una vez pasen 300ms*/
+        setTimeout(function () {
+            $boton.css("background-color", '');
+        },300);
+        /*agregar texto despues del elemento seleccionado*/
+
+    })
+    $('button').last().after("<p>Sigue intentando vencer a la maquina!!</p>")
+
+</script>
+
+</body>
+</html>
