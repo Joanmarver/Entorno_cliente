@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DNI's con letra</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>DNI's</h1>
+<div id="div"></div>
+
+<script>
+    const div = $("#div");
+    const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+    const dnis = [];
+
+    // Función que calcula la letra del DNI
+    function calcularLetra(dni) {
+        const numero = parseInt(dni, 10);
+        if (isNaN(numero) || numero < 0 || numero > 99999999) return null;
+        const letra = letras[numero % 23];
+        return letra;
+    }
+
+    // Función para mostrar resultados en pantalla
+    function mostrarResultados() {
+        if (dnis.length === 0) {
+            div.html("<p>No se ingresaron DNI.</p>");
+            return;
+        }
+
+        let html="";
+        dnis.forEach(dni => {
+            const letra = calcularLetra(dni);
+            if (letra) {
+                html += `<p>${dni} - ${letra}</p>`;
+            } else {
+                html += `<p>${dni} - DNI no válido</p>`;
+            }
+        });
+        div.html(html);
+    }
+
+    // Intervalo
+    const intervalo = setInterval(() => {
+        let dni = prompt("Introduce un DNI (o -1 para finalizar):");
+
+        if (dni === null) {
+            alert("No ingresaste ningún DNI.");
+            return;
+        }
+
+        dni = dni.trim();
+
+        if (dni === "-1") {
+            clearInterval(intervalo);
+            mostrarResultados();
+            return;
+        }
+
+        dnis.push(dni);
+    }, 20000); // el tiempo es en mili segundos, esto son 20 segundos
+</script>
+</body>
+</html>
