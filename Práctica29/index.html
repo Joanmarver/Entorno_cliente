@@ -49,27 +49,50 @@
 
 <h1>Piedra, Papel o Tijera</h1>
 <p>Elige una opción:</p>
-
+<form id="form">
+    <label>Ingresa tu nombre:</label>
+    <input id="input" type="text" id="nombre" name="nombre" required>
+    <button id="submit" type="submit">Enviar</button>
+</form>
 <button id="piedra" class="boton">🪨 Piedra</button>
 <button id="papel" class="boton">📄 Papel</button>
 <button id="tijera" class="boton">✂️ Tijera</button>
 <button id="reiniciar" class="boton" style="background:#e74c3c;">🔄 Reiniciar</button>
 <button id="fondo" class="boton"> Cambiar fondo</button>
+<button id="limpiarLog" class="boton" >🧹 Limpiar historial</button>
+
 <p id="puntuacion">👤 Jugador: 0 | 💻 PC: 0</p>
 <p id="elecciones"></p>
 <p id="resultado"></p>
 <div id="log"></div>
 
 <script>
+
+
     $(document).ready(function() {
         const opciones = ["piedra", "papel", "tijera"];
         let puntosJugador = 0;
         let puntosPC = 0;
+        let nombre="jugador";
 
+        $("#form").on("submit", function(event) {
+            event.preventDefault(); //evita que se  recargue la pagina
+            const $namePlayer = $("#input").val().trim();
+            if ($namePlayer !== ""){
+                nombre = $namePlayer;
+                actualizarPuntuacion();
+            }else{
+                alert("ingresa tu nombre")
+            }
+        })
         function actualizarPuntuacion() {
-            $("#puntuacion").text(`👤 Jugador: ${puntosJugador} | 💻 PC: ${puntosPC}`);
-        }
 
+            $("#puntuacion").text(`👤 ${nombre}: ${puntosJugador} | 💻 PC: ${puntosPC}`);
+        }
+        $("#limpiarLog").click(function() {
+            $("#log").empty(); // borra solo el contenido del div log
+            agregarLog("🧹 Historial de log limpiado."); // opcional: mensaje de aviso
+        });
         function agregarLog(texto) {
             const fecha = new Date().toLocaleTimeString();
             $("#log").prepend(`<div>🕒 [${fecha}] ${texto}</div>`);
@@ -104,6 +127,7 @@
 
             $("#resultado").text(mensaje).css("color", color);
             actualizarPuntuacion();
+
             agregarLog(`Jugador: ${eleccionJugador} | PC: ${pc} → ${mensaje}`);
         }
 
@@ -141,6 +165,8 @@
 
     })
     $('button').last().after("<p>Sigue intentando vencer a la maquina!!</p>")
+
+
 
 </script>
 
