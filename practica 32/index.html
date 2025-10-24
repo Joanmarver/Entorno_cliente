@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>desglose de cadena</h2>
+<input type="texto" id="cadena">
+<button id="procesar">desglosar</button>
+<div id="resultado"></div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#procesar").on("click", function() {
+            const cadena = $("#cadena").val().trim();
+
+            // Validar formato
+            const partes = cadena.split(":");
+            if (partes.length !== 5) {
+                $("#resultado").html("<p>Formato incorrecto. Usa: nombre:apellidos:telefono:email:codigopostal</p>");
+                return;
+            }
+
+            const [nombre, apellidos, telefono, email, codigopostal] = partes;
+
+            // Obtener servidor del email
+            const servidorEmail = email.includes("@") ? email.split("@")[1] : "Correo inválido";
+
+            // Mostrar resultado
+            $("#resultado").html(`
+          <p><strong>Código postal:</strong> ${codigopostal}</p>
+          <p><strong>Apellidos:</strong> ${apellidos}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Servidor de email:</strong> ${servidorEmail}</p>
+        `);
+        });
+    });
+
+</script>
+
+</body>
+</html>

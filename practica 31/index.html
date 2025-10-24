@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<h2>NUmeros primos y palindromos del 1 al 10000</h2>
+
+<label>Introduce un numero</label>
+<input type="number" id="numeros">
+<button id="boton">Calcular</button>
+
+<p id="resultado"></p>
+<script>
+    const $button = $("#boton")
+
+        $button.on("click", function () {
+            const num = parseInt($("#numeros").val());
+
+            function primo(num) {
+                if (num < 2) return false;
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) return false;
+                }
+                return true;
+            }
+
+            function palindromo(num) {
+                const str = num.toString();
+                const reversed = str.split("").reverse().join("");
+                return str === reversed;
+            }
+
+            const esPrimo = primo(num);
+            const esPalindromo = palindromo(num);
+
+            if (esPrimo && esPalindromo) {
+                $("#resultado").html(`<p>El número ${num} es primo y es palíndromo.</p>`);
+            } else if (!esPrimo && !esPalindromo) {
+                $("#resultado").html(`<p>El número ${num} no es primo y no es palíndromo.</p>`);
+            } else if (!esPrimo && esPalindromo) {
+                $("#resultado").html(`<p>El número ${num} no es primo pero es palíndromo.</p>`);
+            } else if (esPrimo && !esPalindromo) {
+                $("#resultado").html(`<p>El número ${num} es primo pero no es palíndromo.</p>`);
+            }
+        });
+
+</script>
+</body>
+</html>
