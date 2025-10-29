@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica de Objetos con jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h2>Registro de usuario (práctica con objetos y jQuery)</h2>
+
+<!-- //1 Creamos un formulario simple con tres inputs -->
+<form id="userForm">
+    <label>Nombre:</label>
+    <input type="text" id="name"><br><br>
+
+    <label>Edad:</label>
+    <input type="number" id="age"><br><br>
+
+    <label>Email:</label>
+    <input type="email" id="email"><br><br>
+
+    <!-- //2 Botón que activará el evento click -->
+    <button type="button" id="btnGuardar">Guardar usuario</button>
+</form>
+
+<h3>Datos del usuario:</h3>
+<div id="output"></div>
+
+<script>
+    $(document).ready(function() {
+
+        //3 Cuando el usuario hace clic en el botón...
+        $('#btnGuardar').on('click', function() {
+            const number=$("#age").val();
+            const email=$("#email").val();
+            const nombre=$("#name").val();
+            //4 Creamos un objeto con los valores del formulario
+            let objeto= {name : nombre, email : email, age:number};
+            //5 Mostramos el objeto en el div de salida
+            const div=$("#output");
+            div.empty();
+            const $ul=$("<ul></ul>");
+            for (const key in objeto) {
+                const li = document.createElement("li");
+                li.textContent = key + ": " + objeto[key];
+                $ul.append(li);
+                div.append($ul);
+            }
+            //6 Mostramos el objeto completo por consola
+            console.log(objeto);
+        });
+
+        //7 Cambiamos color del input al ganar foco
+        $("input").on("focus", function() {
+            $(this).css("background-color", "#d1fae5");
+        });
+        //8 Restauramos color al perder el foco
+        $("input").on("blur", function() {
+            $(this).css("background-color", "white");
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica con Set</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h2>Práctica con Set</h2>
+
+<ul id="listaSet"></ul>
+
+<button id="btnAdd">Añadir valor</button>
+<button id="btnDelete">Eliminar valor</button>
+<button id="btnClear">Vaciar Set</button>
+
+<p>Total elementos: <span id="total">0</span></p>
+
+<script>
+    $(function() {
+        let val = 0;
+        // 1. Crear un Set vacío
+        const miSet = new Set();
+        const $lista = $("#listaSet");
+        const $total = $("#total");
+
+        // Función para actualizar la lista en la página
+        function actualizarLista() {
+            $lista.empty();
+            miSet.forEach(valor => {
+                $lista.append($("<li>").text(valor));
+            });
+            $total.text(miSet.size); // actualizar total
+        }
+
+        // 2. Añadir valor
+        $("#btnAdd").on("click", function () {
+            val++;
+            miSet.add(val)
+            actualizarLista();
+        });
+
+    // 3. Eliminar valor
+        $("#btnDelete").on("click", function () {
+            if (miSet.size === 0) return;
+
+            const arr = Array.from(miSet);
+            const ultimo = arr[arr.length - 1];
+            miSet.delete(ultimo);
+            actualizarLista();
+        })
+
+    // 4. Vaciar Set
+        $("#btnClear").on("click", function () {
+            miSet.clear();
+            actualizarLista();
+        })
+    });
+</script>
+</body>
+</html>
