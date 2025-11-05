@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscripción a Curso Técnico</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, select, button {
+            width: 100%;
+            margin: 8px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label { font-weight: bold; }
+        button {
+            background-color: #0078d4;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover { background-color: #005fa3; }
+        #resultado {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .error {
+            border: 2px solid red;
+            background-color: #ffe6e6;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Formulario de Inscripción</h2>
+
+<form id="formCurso">
+    <label>Nombre completo:</label>
+    <input type="text" id="nombre" placeholder="Ej: Ana Gómez">
+
+    <label>Correo electrónico:</label>
+    <input type="email" id="correo" placeholder="Ej: ana@example.com">
+
+    <label>Curso:</label>
+    <select id="curso">
+        <option value="">-- Selecciona un curso --</option>
+        <option>Administración de sistemas</option>
+        <option>Desarrollo web</option>
+        <option>Ciberseguridad</option>
+        <option>Bases de datos</option>
+    </select>
+
+    <label>Nivel de experiencia (0-10):</label>
+    <input type="number" id="nivel" min="0" max="10">
+
+    <button type="submit">Enviar inscripción</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+    //1. Evitar recarga del formulario
+    $('#formCurso').on('submit', function(e) {
+        e.preventDefault();
+
+        //2. Capturar los valores
+        let nombre = $('#nombre').val().trim();
+        let correo = $('#correo').val().trim();
+        let curso = $('#curso').val();
+        let nivel = $('#nivel').val();
+
+        //3. Validar campos
+
+        let valido = true;
+
+        if (nombre === '') { $('#nombre').addClass('error'); valido = false; }
+        if (correo === '' || !correo.includes('@')) { $('#correo').addClass('error'); valido = false; }
+        if (curso === '') { $('#curso').addClass('error'); valido = false; }
+        if (nivel === '' || nivel < 0 || nivel > 10) { $('#nivel').addClass('error'); valido = false; }
+
+        if (!valido) {
+            $('#resultado').html('Revisa los campos marcados en rojo.');
+            return;
+        }
+
+        //4. Mostrar mensaje de confirmación
+        $('#resultado').html(
+            `Inscripción completada.<br>
+        <strong>${nombre}</strong> se ha inscrito en <em>${curso}</em>.<br>
+        Nivel de experiencia: ${nivel}/10.<br>
+        Se enviará confirmación a <strong>${correo}</strong>.`
+        );
+
+        //5. Limpiar formulario después de 5 segundos
+        setTimeout(() => {
+            document.getElementById('formCurso').reset();
+            $('#resultado').fadeOut(300, function() {
+                $(this).html('').show();
+            });
+        }, 5000);
+    });
+</script>
+
+</body>
+</html>

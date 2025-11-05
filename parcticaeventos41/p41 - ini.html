@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Introducción a los Eventos con jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .caja {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background-color: lightblue;
+            border-radius: 10px;
+            line-height: 200px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        input {
+            margin-top: 20px;
+            padding: 5px;
+        }
+        #log {
+            margin-top: 20px;
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Eventos en acción (jQuery)</h2>
+<div class="caja">Haz clic aquí</div>
+
+<input type="text" id="campoTexto" placeholder="Escribe algo...">
+
+<p id="log">Esperando interacción...</p>
+
+<script>
+    $(function() {
+        // Evento de clic en caja
+        $(".caja").on("click", function() {
+            $(this).css("background-color", "lightgreen");
+            $("#log").text("Has hecho clic en la caja.");
+        });
+
+        // Doble clic en caja
+        $(".caja").on("dblclick", function() {
+            $(this).css("background-color", "lightgreen");
+            $("#log").text("Has hecho doble clic en la caja.");
+        });
+
+        // Movimiento del ratón en caja
+        $(".caja").on("mouseenter", function() {
+            $("#log").text("Estas dentro de la caja");
+
+        }).on("mouseleave", function() {
+            $("#log").text("estas fuera de la caja");
+        })
+
+        // Eventos de teclado en campoTexto
+        $("#campoTexto").on("keydown", function() {
+            $("#log").text("estas presinando una tecla");
+        }).on("keyup", function() {
+            $("#log").text("estas soltando una tecla");
+        }).on("focus", function() {
+            $("#log").text("el cmapo de texto esta enfocado");
+        }).on("blur", function() {
+            $("#log").text("el campo ha perdido el foco");
+        });
+
+        $('#campoTexto').on("input", function() {
+            let cantidad = $(this).length;
+            $("#log").text(cantidad);
+        })
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form id="form">
+    <input id="nombre" name="nombre" type="text">
+    <label>Nombre</label>
+    <span id="error-nombre"></span>
+    <input id="email" type="email">
+    <label>Email</label>
+    <span  id="error-email"></span>
+    <input id="contrasenia" type="password">
+    <label>Password</label>
+    <span  id="error-pass"></span>
+    <input id="submit" type="submit" value="Enviar">
+</form>
+
+
+<script>
+    $(document).ready(function(){
+        const $form = $('#form');
+        const $name = $('#nombre');
+        const $email = $('#email');
+        const $pass = $('#contrasenia');
+
+
+        const $errorName = $('#error-nombre');
+        const $errorEmail = $('#error-email');
+        const $errorPass = $('#error-pass');
+
+        const $submit = $('#submit'); // Asume que ya tienes un botón en el HTML
+
+        $form.on('input', function() {
+
+            let valid = true;
+
+            // Validación del nombre
+            if ($name.val().trim() == null || $name.val() === "") {
+                $errorName.text("❌");
+                valid = false;
+            } else {
+                $errorName.text("✅");
+            }
+
+            // Validación del email
+            if ($email.val().trim() === "" || !$email.val().includes('@')) {
+                $errorEmail.text("❌");
+                valid = false;
+            } else {
+                $errorEmail.text("✅");
+            }
+
+            // Validación de la contraseña
+            if ( $pass.val() === null || $pass.val().trim().length < 6) {
+                $errorPass.text("❌");
+                valid = false;
+            } else {
+                $errorPass.text("✅");
+            }
+
+            // Habilitar o deshabilitar el botón según validación
+            $submit.prop('disabled', !valid);
+        });
+    });
+
+
+</script>
+</body>
+</html>
