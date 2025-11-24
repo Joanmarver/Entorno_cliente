@@ -1,0 +1,7 @@
+{
+  "usuarios": [
+    {"nombre":"Ana","edad":28,"profesion":"Ingeniera","ciudad":"Valencia"},
+    {"nombre":"Luis","edad":35,"profesion":"Médico","ciudad":"Madrid"},
+    {"nombre":"Marta","edad":25,"profesion":"Estudiante","ciudad":"Sevilla"}
+  ]
+}
