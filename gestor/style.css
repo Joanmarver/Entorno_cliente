@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 1em;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    text-align: center;
+}
+
+#tareaForm {
+    display: flex;
+    flex-direction: column;
+    gap: .6em;
+    margin-bottom: 1.2em;
+}
+
+#listaTareas {
+    display: flex;
+    flex-direction: column;
+    gap: .6em;
+}
+
+.tarea {
+    background: white;
+    padding: .8em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+}
+
+.tarea-completada {
+    background-color: #d9d9d9;
+    text-decoration: line-through;
+}
+
+.prioridad-baja {
+    color: green;
+}
+
+.prioridad-media {
+    color: orange;
+}
+
+.prioridad-alta {
+    color: red;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: .4em .7em;
+    border-radius: 5px;
+}
+
+button.completar {
+    background-color: #5c9cff;
+    color: white;
+}
+
+button.completar:hover {
+    background-color: #3a76d7;
+}
+
+button.eliminar {
+    background-color: #ff5c5c;
+    color: white;
+}
+
+button.eliminar:hover {
+    background-color: #d74444;
+}
+
+.botones {
+    display: flex;
+    gap: .5em;
+}

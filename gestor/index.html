@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Tareas Prioritarias</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<h1>Gestor de Tareas Prioritarias</h1>
+
+<form id="tareaForm">
+    <input type="text" id="nombreTarea" placeholder="Nombre de la tarea" required>
+
+    <select id="prioridad">
+        <option value="baja">Baja</option>
+        <option value="media">Media</option>
+        <option value="alta">Alta</option>
+    </select>
+
+    <button type="submit">Añadir tarea</button>
+</form>
+
+<div id="listaTareas"></div>
+
+</body>
+</html>

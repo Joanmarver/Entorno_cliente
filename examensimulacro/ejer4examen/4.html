@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<div id="totalnombres"></div>
+<div id="nombreslargos"></div>
+<div id="nombrescortos"></div>
+<script>
+    const nombres = ["Ana", "Miguel", "Luis", "Valentina", "Juan", "Carla"];
+    const nombrescortosminuscula = [];
+    const nombreslargosmayuscula = [];
+    const $noombreslargos = $("#nombreslargos")
+    const $noombrescortos = $("#nombrescortos")
+    const $total = $("#totalnombres")
+
+    for(let i =0;i < nombres.length ;i++){
+        if(nombres[i].length > 4 ){
+
+            nombreslargosmayuscula.push(nombres[i]);
+        }else if(nombres[i].length <= 4 ){
+
+            nombrescortosminuscula.push(nombres[i]);
+
+        }
+
+    }
+
+    $total.append(`<p>Nombres totales  : ${nombres.length}</p>`);
+    $noombreslargos.append(`<p>Nombre largos con mayuscula : ${nombreslargosmayuscula.length}</p>`);
+
+    for(let i =0;i < nombreslargosmayuscula.length ;i++){
+        $noombreslargos.append(`<p>${nombreslargosmayuscula[i].toUpperCase()}</p>`);
+    }
+    $noombrescortos.append(`<p>Nombre cortos con minusculas : ${nombrescortosminuscula.length}</p>`);
+    for(let i =0;i < nombrescortosminuscula.length ;i++){
+        $noombrescortos.append(`<p>${nombrescortosminuscula[i].toLowerCase()}</p>`);
+    }
+
+</script>
+</body>
+</html>

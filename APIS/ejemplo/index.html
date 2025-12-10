@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica: Tiempo en Almassora</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.5; }
+        code { background: #eee; padding: 2px 4px; }
+        .box { background: #f4f4f4; padding: 10px; border-left: 4px solid #0077cc; margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+<h1>Práctica API del Tiempo (Open-Meteo)</h1>
+
+<h2>Tiempo actual</h2>
+<select id="ciudad">
+    <option value="Burriana">Burriana</option>
+    <option value="Almazora">Almazora</option>
+    <option value="villarreal">villarreal</option>
+</select>
+<button id="btnActual">Mostrar tiempo actual</button>
+<div id="resultadoActual" class="box"></div>
+
+<script>
+    $(function() {
+        
+        let lat=0;
+        let lon=0;
+        let nombre="";
+
+
+
+        $("#btnActual").click(function() {
+            const ciudad=$('#ciudad').val();
+            switch (ciudad){
+                case 'Burriana': {nombre="burriana";lat=53.94; lon= 5.09} break;
+                case 'Almazora': {nombre="Almazora";lat=39.95; lon= -0.05} break;
+                case 'villarreal': {nombre="villarreal";lat=39.93; lon= -0.10} break;
+            }
+
+            fetch("https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lon+"&current_weather=true")
+                .then(res => res.json())
+                .then(data => {
+                    const cw = data.current_weather;
+                    $("#resultadoActual").html(`
+                     <b>Tiempo actual ${nombre}:</b><br>
+                     Temperatura: ${cw.temperature} ºC<br>
+                     Viento: ${cw.windspeed} km/h<br>
+                     Dirección del viento: ${cw.winddirection}º<br>
+                     Hora del dato: ${cw.time}
+                     `);
+
+                });
+        });
+
+
+    });
+</script>
+
+
+</body>
+</html>

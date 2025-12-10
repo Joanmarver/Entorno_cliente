@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<form id="form">
+    <label>Nombre</label>
+    <input id="nombre" name="nombre" type="text"><br>
+    <span id="error-nombre"></span><br>
+    <label>Email</label><br>
+    <input id="email" type="email"><br>
+    <span  id="error-email"></span><br>
+    <label>telefono</label><br>
+    <input id="telefono" type="text"><br>
+    <span  id="error-telefono"></span><br>
+    <label>aceptación de condiciones</label><br>
+    <input id="condiciones" type="checkbox"  required>
+
+    <input id="submit" type="submit" value="Enviar" disabled>
+</form>
+
+<script>
+    $(document).ready(function () {
+        const nombreValidacion = new RegExp("^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$");
+        const emailValidacion = new RegExp("^[\\w.-]+@[\\w.-]+\\.\\w{2,}$");
+        const telefonoValidacion= new RegExp("^\\d{7,15}$");
+        let valNombre=false;
+        let valEmail=false;
+        let valTelefono=false;
+
+        $("#nombre").on("blur", function () {
+            const nombre = $("#nombre").val().trim();
+            if (nombreValidacion.test(nombre)) {
+                $("#nombre").css("color", "green");
+                $("#error-nombre").html("");
+                valNombre=true;
+            }else{
+                $("#nombre").css("color", "red");
+                $("#error-nombre").css("color", "red");
+                $("#error-nombre").html("Error en el nombre");
+
+            }
+        })
+        $("#email").on("blur", function () {
+            const email = $("#email").val().trim();
+            if ( emailValidacion.test(email)) {
+                $("#email").css("color", "green");
+                $("#error-email").html("");
+                valEmail=true;
+
+            }else{
+                $("#email").css("color","red");
+                $("#error-email").html("Error en el email");
+                $("#error-email").css("color", "red");
+
+            }
+        })
+
+        $("#telefono").on("blur", function () {
+            const telefono = $("#telefono").val().trim();
+            if (telefonoValidacion.test(telefono)) {
+                $("#telefono").css("color", "green");
+                $("#error-telefono").html("");
+                valTelefono=true;
+            }else{
+                $("#telefono").css("color", "red");
+                $("#error-telefono").html("Error en el telefono");
+                $("#error-telefono").css("color", "red");
+
+            }
+        })
+
+        if (valTelefono===true && valTelefono===true && valTelefono===true) {
+            $("#submit").attr("disabled", false);
+        }
+
+    })
+</script>
+</body>
+</html>

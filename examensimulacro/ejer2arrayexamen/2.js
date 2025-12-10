@@ -1,0 +1,7 @@
+const array = [4,0,3,4,7,3,5,8,1,8,8,0,2,3,1,2,5,7,3,2,5,1]
+
+for (let i = 0; i<array.length; i++){
+    if (array[i] === 3){
+        console.log(i)
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<h1>Productos</h1>
+<form></form>
+<label >Nombre Producto:</label>
+<input type="text" id="nombreProducto">
+<button id="aniadir">Añadir</button>
+<button id="contarprod">Contar Productos</button>
+<button id="borrar">Borrar lista</button>
+</form>
+<ul id="listaprod"></ul>
+<p id="log"></p>
+<p id="conteo"></p>
+<script>
+    let arrayprod = [];
+$("#aniadir").on("click", function() {
+    const prodname= $("#nombreProducto").val().trim();
+    if (prodname === "" || prodname === null) {
+        agregarlog("el producto no puede estar vacio")
+    }else {
+        arrayprod.push(prodname);
+        mostrarproducto();
+    }
+
+})
+    $("#contarprod").on("click", function() {
+        $("#conteo").append(`hay ${arrayprod.length} en la lista`);
+    })
+
+    $("#borrar").on("click", function() {
+        $("#listaprod").empty();
+        $("#conteo").empty();
+        $("#log").empty();
+        arrayprod.length = 0;
+        mostrarproducto();
+    })
+
+    function agregarlog(log){
+    $("#log").append(`<p style="color: red">${log}</p>`);
+    }
+
+    function mostrarproducto(){
+    $('#listaprod').empty();
+    for (let i = 0; i < arrayprod.length; i++) {
+        $("#listaprod").append(`<li>${arrayprod[i]}</li>`);
+    }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<input type="text" id="texto">
+<button id="btnMostrar">buscar</button>
+<div id="contenedor"></div>
+
+<script>
+    $(document).ready(function () {
+        $("#btnMostrar").click(async function () {
+            try {
+                const pokemon = $("#texto").val();
+
+                $("#contenedor").empty();
+                const res = await fetch("https://pokeapi.co/api/v2/pokemon/" + pokemon);
+                const pokemondatos = await res.json();
+                const tipos = pokemondatos.types.map(t => t.type.name).join(", ");
+                const URL = pokemondatos.sprites.front_default;
+                const altura = pokemondatos.height / 10;
+                const peso = pokemondatos.weight / 10;
+
+                $("#contenedor").append(`<img src="${URL}"><p>Nombre: ${pokemondatos.name}<br>
+                    Tipo: ${tipos} <br>Altura: ${altura}m <br>Peso: ${peso}kg</p>`)
+            }catch(err) {
+                $("#contenedor").append(`<p style='color: red;'> ${err.message}</p>`);
+            }
+        })
+    })
+</script>
+
+</body>
+</html>

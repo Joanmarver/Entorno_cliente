@@ -1,0 +1,90 @@
+/* Colores de Referencia Limpios:
+   - Primario (Botones/Acción): #007bff (Azul Bootstrap)
+   - Fondo de Página: #f8f9fa (Gris muy claro)
+   - Fondo de Contenedor: #ffffff (Blanco)
+   - Borde/Sombra: #dee2e6 (Gris Claro)
+*/
+
+body {
+    /* Fondo limpio y estándar de Bootstrap */
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40; /* Texto oscuro para buena legibilidad */
+}
+
+/* 1. Contenedor Principal (Tarjeta limpia) */
+.col-md-6 {
+    background-color: #ffffff !important;
+    color: #343a40;
+    border: 1px solid #dee2e6; /* Borde sutil */
+    border-radius: 8px; /* Bordes suaves */
+    /* Sombra ligera */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* 2. Título principal */
+h1 {
+    color: #007bff !important; /* Azul primario */
+    margin-bottom: 25px;
+    font-weight: 300; /* Fuente ligera para un estilo moderno */
+}
+
+/* 3. Input y Focus */
+.form-control {
+    background-color: #f0f0f0; /* Fondo del input ligeramente gris */
+    color: #495057;
+    border-color: #ced4da; /* Gris estándar */
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra de enfoque azul suave */
+}
+
+/* 4. Botón de Agregar Jugador (Énfasis secundario - Verde) */
+#BtnAgregarJugador {
+    /* Clases de Bootstrap btn-success ya hacen el trabajo, pero reforzamos */
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+/* 5. Botón de Empezar (Énfasis primario - Azul) */
+#BtnEmpezar {
+    /* Clases de Bootstrap btn-primary ya hacen el trabajo */
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    font-weight: 600;
+}
+
+/* Efecto de deshabilitado */
+#BtnEmpezar[disabled] {
+    background-color: #6c757d !important; /* Gris para deshabilitado */
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* 6. Estilo para la lista de jugadores */
+#lista-jugadores {
+    background-color: #f8f9fa !important; /* Fondo muy claro dentro del contenedor */
+    border-color: #dee2e6 !important;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Estilo para los nombres de jugador generados por JS */
+.jugador-nombre {
+    /* Estilo de etiqueta/badge limpio */
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #343a40;
+    padding: 5px 10px;
+    margin: 4px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<button id="btn">Nuevo usuario</button>
+<img id="foto" width="150">
+<img id="foto1" width="150">
+<p id="nombre"></p>
+<p id="nombre1"></p>
+
+
+<script>
+
+    $("#btn").on("click", async () => { // <--- Cambiado a función flecha async
+        const res = await fetch("https://randomuser.me/api/?results=5");
+        const data = await res.json();
+
+        const user = data.results[0];
+        const user1= data.results[1];
+
+        $("#foto").attr("src", user.picture.large);
+        $("#nombre").text(`${user.name.first} ${user.name.last}`);
+        $("#foto1").attr("src", user1.picture.large);
+        $("#nombre1").text(`${user1.name.first} ${user1.name.last}`);
+
+    });
+
+    // TAREA: Mostrar en pantalla el nombre y foto de un usuario random.
+
+
+</script>
+
+</body>
+</html>
